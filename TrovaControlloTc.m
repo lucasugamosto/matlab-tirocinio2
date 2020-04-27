@@ -64,9 +64,8 @@
     end
    
         %calcolo dell'indice di costo che si ha con il controllo u(.)  
-        %u_trasp = u_t';
-        %arg = u_t*u_trasp;
-        %J = int(arg,tau,0,t);
-        %J = subs(J,t,T)
+        u_trasp = u';
+        arg = u*u_trasp;
+        J = int(arg,tau,0,T)
         
 end
