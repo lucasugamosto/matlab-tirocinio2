@@ -33,26 +33,26 @@ function x = CalcoloRispostaForzata(A,B,u,T)
         xf = ilaplace(Xf);  %risposta forzara nello stato in t
         
         %calcolo della risposta forzata nel dominio del tempo, al tempo T
-        %desiderato
+        %desiderato, applicando il controllo u0 desiderato
         x = subs(xf,t,T);
 
         %rappresentazione su un grafico della risposta forzata ottenuta
-        time = [0:1:T];     
-        vet = [];
+        %time = [0:1:T];    
+        %vet = [];
         
-        for i = 0:T
-            val = subs(xf,t,i);
-            vet = horzcat(vet,val);
-        end
+        %for i = 0:T
+        %    val = subs(xf,t,i);
+        %    vet = horzcat(vet,val);
+        %end
         
-        x1 = vet(1,:);
-        x2 = vet(2,:);
-        plot(time,x1,"r--*","LineWidth",2);
-        hold on
-        plot(time,x2,"g--*","LineWidth",2);
-        title("andamento della risposta forzata");
-        xlabel("tempo t");
-        ylabel("risposta forzata x");
-        legend("1°componente di x","2°componente di x");
+        %x1 = vet(1,:);
+        %x2 = vet(2,:);
+        %plot(time,x1,"r--*","LineWidth",2);
+        %hold on
+        %plot(time,x2,"g--*","LineWidth",2);
+        %title("andamento della risposta forzata");
+        %xlabel("tempo t");
+        %ylabel("risposta forzata x");
+        %legend("1°componente di x","2°componente di x");
     end  
 end

@@ -4,8 +4,8 @@
     %l'indice di costo J(u)
     syms t tau;
     
-    if T<0
-        fprintf("il tempo T deve essere maggiore o uguale a 0\n");
+    if T<=0
+        fprintf("il tempo T deve essere maggiore 0\n");
         return
     else
         %calcolo delle dimensioni delle matrici A e B
@@ -14,7 +14,7 @@
         n = dim_A(1);
         p = dim_B(2);
 
-        %creazione della matrice di raggiungibilitÃ  P(A,B)
+        %creazione della matrice di raggiungibilità P(A,B)
         if n == 1
             P = B;
         elseif n == 2
@@ -37,16 +37,16 @@
             P = [B A*B (A^2)*B (A^3)*B (A^4)*B (A^5)*B (A^6)*B (A^7)*B (A^8)*B (A^9)*B];
         end
     
-        %controllo se lo stato xf Ã¨ raggiungibile
+        %controllo se lo stato xf è raggiungibile
         rank_P = rank(P);            %rango della matrice P
         P_xf = horzcat(P,xf);        %matrice [P|xf]
         rank_P_xf = rank(P_xf);      %rango della matrice [P|xf]
     
         if rank_P~=rank_P_xf
-            fprintf("lo stato desiderato non puÃ² essere raggiunto\n");
+            fprintf("lo stato desiderato non può essere raggiunto\n");
             return
         else
-            fprintf("lo stato desiderato puÃ² essere raggiunto\n");
+            fprintf("lo stato desiderato può essere raggiunto\n");
         end
     
         %procedura per il calcolo della funzione d'ingresso per raggiungere
@@ -64,7 +64,7 @@
     end
    
         %calcolo dell'indice di costo che si ha con il controllo u(.)  
-        u_trasp = u';
-        arg = u*u_trasp;
-        J = int(arg,tau,0,T)
+        %u_trasp = u';
+        %arg = u*u_trasp;
+        %J = int(arg,tau,0,T)  
 end
