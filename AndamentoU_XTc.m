@@ -21,11 +21,9 @@ function AndamentoU_XTc(A,B,xf,T)
     control = [];
     for j = 0:1:T-1
         val = subs(u,tau,j);
-        control = horzcat(control,val);
+        control = horzcat(control,val)
     end 
     control = horzcat(control,0);
-
-    plot(time,control,"b-*","Linewidth",2);
     
     %ANDAMENTO DI x*(.) ESPRESSA NELL'INTERVALLO [0,T]
     mat1 = A*(t-tau);
@@ -37,13 +35,20 @@ function AndamentoU_XTc(A,B,xf,T)
     x = [];
     for i = 0:1:T
         val = int(expr,tau,0,t);
-        val = subs(val,t,i)
+        val = subs(val,t,i);
         x = horzcat(x,val);
     end
     
     x1 = x(1,:);
     x2 = x(2,:);
     
+    %RAPPRESENTAZIONE DEGLI ANDAMENTI DI u* e x* in un grafico
+    plot(time,control,"b-o","Linewidth",2.5);
+    hold on
+    plot(time,x1,"r-o","Linewidth",2.5);
+    hold on
+    plot(time,x2,"g-o","Linewidth",2.5);
     title("andamento di u*(.) e x*(.)");
     xlabel("tempo t");
+    legend("u*(.)","1° componente x*(.)","2° componente x*(.)");
 end
