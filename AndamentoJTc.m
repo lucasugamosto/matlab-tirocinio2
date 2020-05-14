@@ -17,7 +17,7 @@ function AndamentoJTc(A,B,u0,x,T,k)
         %calcolo dell'indice di costo dei controlli ottimi calcolati al punto
         %precedente
         J = [];
-        for i = 1:0.5:T
+        for i = 1:0.1:T
             if i ~= T
                 u = TrovaControlloTc(A,B,x,i);      %calcolo del controllo uTi(.)
                 arg = u'*u;
@@ -28,7 +28,7 @@ function AndamentoJTc(A,B,u0,x,T,k)
             end
         end
     
-        time = [1:0.5:T];
+        time = [1:0.1:T];
         plot(time,J,"g-*","Linewidth",2);
     
         %calcolo dell'indice di costo dell'ingresso u0(.) con il quale

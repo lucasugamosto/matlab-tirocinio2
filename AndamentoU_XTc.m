@@ -8,13 +8,13 @@ function AndamentoU_XTc(A,B,xf,T)
     dim_B = size(B);
     p = dim_B(2);
     n = dim_A(1);
-    time = [0:1:T];
+    time = [0:0.1:T];
 
     u = TrovaControlloTc(A,B,xf,T);
     
     %ANDAMENTO DI u*(.) ESPRESSA NELL'INTERVALLO [0,T)
     control = [];
-    for j = 0:1:T
+    for j = 0:0.1:T
         if j~=T
             val = subs(u,tau,j);
             control = horzcat(control,val);
@@ -25,7 +25,7 @@ function AndamentoU_XTc(A,B,xf,T)
     
     %ANDAMENTO DI x*(.) ESPRESSA NELL'INTERVALLO [0,T]
     x = [];
-    for i = 0:1:T
+    for i = 0:0.1:T
         val = CalcoloRispostaForzata(A,B,u,i);
         x = horzcat(x,val);
     end
