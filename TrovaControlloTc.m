@@ -16,16 +16,12 @@
         I = eye(n);
 
         %creazione della matrice di raggiungibilità P(A,B)
-        if n == 1
-            P = B;
-        elseif n == 2
-            P = [B A*B];
-        elseif n == 3
-            P = [B A*B (A^2)*B];
-        elseif n == 4
-            P = [B A*B (A^2)*B (A^3)*B];
-        elseif n == 5
-            P = [B A*B (A^2)*B (A^3)*B (A^4)*B];
+        P = [];
+        j = 0;
+        for i = 1:n
+            mat = (A^j)*B;
+            P = horzcat(P,mat);
+            j = j+1;
         end
     
         %controllo se lo stato xf è raggiungibile
