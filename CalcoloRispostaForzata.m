@@ -7,9 +7,9 @@ function x = CalcoloRispostaForzata(A,B,u0,T)
     %variabile t di qualsiasi grado, la funzione "heaviside(t)" può essere
     %omessa poichè è sottointesa.
 
-    %Per il calcolo della risposta forzata si opera nel dominio di Laplace
-    %poichè lavorare in quello del tempo è più complesso. Alla fine viene
-    %riportata la soluzione nel dominio del tempo.
+    %Per il calcolo della risposta forzata si opera nel dominio delle
+    %frequenze poichè lavorare in quello del tempo è più complesso. 
+    %Alla fine viene riportata la soluzione nel dominio del tempo.
     
     syms s t tau;
     
@@ -29,10 +29,13 @@ function x = CalcoloRispostaForzata(A,B,u0,T)
         %calcolo della risposta forzata in s
         H = mat*B;              %matrice (sI-A)^-1*B
         U = laplace(u0);        %L{u0(t)} = u(s)
-        Xf = H*U;               %risposta forzata nel dominio di Laplace
+        Xf = H*U;               %risposta forzata nel dominio delle frequenze
         xf = ilaplace(Xf);      %risposta forzara nel dominio del tempo
         
         %calcolo della risposta forzata al tempo T desiderato (T>= 0)
-        x = subs(xf,t,T);       %xf(T)
+        x = subs(xf,t,T)        %xf(T)
+        
+        fprintf("approssimativamente la risposta forzata x trovata vale:\n")
+        x = round(x);
     end  
 end

@@ -17,11 +17,8 @@
 
         %creazione della matrice di raggiungibilità P(A,B)
         P = [];
-        j = 0;
-        for i = 1:n
-            mat = (A^j)*B;
-            P = horzcat(P,mat);
-            j = j+1;
+        for i = 0:n-1
+            P = horzcat(P,(A^i)*B);
         end
     
         %controllo se lo stato xf è raggiungibile
@@ -52,5 +49,6 @@
     
         expr = B'*mat5*b;                   %B'e^(A'(t-tau))b
         u = subs(expr,t,T);
+        
     end
 end

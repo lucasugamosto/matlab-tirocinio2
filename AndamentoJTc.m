@@ -1,16 +1,16 @@
-function AndamentoJTc(A,B,u0,x,T,k)
+function AndamentoJTc(A,B,u0,x,T,tseg)
     %rappresentazione sul grafico dell'andamenti dell'indice di costo J
     %associato al controllo ottimo calcolato precedentemente, al variare
-    %del tempo T
+    %del tempo Ti
     syms s tau t;
     
     if T<=0
         fprintf("il tempo T deve essere maggiore di 0\n");
         return
-    elseif k<=0
+    elseif tseg<=0
         fprintf("il tempo k deve essere incluso nell'insieme dei tempi (0,T]\n");
         return
-    elseif k>T
+    elseif tseg>T
         fprintf("il tempo k deve essere incluso nell'insieme dei tempi (0,T]\n");
         return
     else
@@ -35,13 +35,13 @@ function AndamentoJTc(A,B,u0,x,T,k)
         %calcolare la risposta forzata al punto 2
         
         arg_1 = u0'*u0;
-        Ju0 = int(arg_1,t,0,k);
+        Ju0 = int(arg_1,t,0,tseg);
         
         hold on
-        plot(k,Ju0,"r*");
+        plot(tseg,Ju0,"r*");
         
-        title("andamento dell'indice di costo");
+        title("andamento dell'indice di costo JTi");
         xlabel("tempo t");
         ylabel("indice di costo J");
-        legend("JTi(u*)","Jk(u0)");
+        legend("JTi(u*)","Jtseg(u0)");
 end
